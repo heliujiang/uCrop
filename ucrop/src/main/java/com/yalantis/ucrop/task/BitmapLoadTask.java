@@ -24,7 +24,6 @@ import com.yalantis.ucrop.util.FileUtils;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -208,7 +207,8 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapLoadTask.BitmapW
         OutputStream outputStream = null;
         try {
             inputStream = mContext.getContentResolver().openInputStream(inputUri);
-            outputStream = new FileOutputStream(new File(outputUri.getPath()));
+//            outputStream = new FileOutputStream(new File(outputUri.getPath()));
+            outputStream = mContext.getContentResolver().openOutputStream(outputUri);
             if (inputStream == null) {
                 throw new NullPointerException("InputStream for given input Uri is null");
             }
